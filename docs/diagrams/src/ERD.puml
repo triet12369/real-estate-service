@@ -1,0 +1,34 @@
+@startuml DB Design
+entity user {
+    id
+    username
+    user_password
+    PRIMARY KEY id
+}
+
+entity access_token {
+    id
+    access_token
+    PRIMARY KEY id
+}
+
+entity property {
+    id SERIAL
+    title VARCHAR(150)
+    country VARCHAR(20)
+    city VARCHAR(50)
+    address VARCHAR(100)
+    description VARCHAR(1000)
+    list_type VARCHAR(20)
+    PRIMARY KEY id
+}
+
+entity property_image {
+    id SERIAL
+    data BYTEA
+    PRIMARY KEY (property.id, property_image.id)
+    FOREIGN KEY property.id
+}
+
+property ||..|{ property_image 
+@enduml
